@@ -4,11 +4,15 @@
 if (new URLSearchParams(location.search).has("library", true)) {
     window.stop() //stop downloading as soon as possible
 	console.log("library is loading..")
-    const footerByteOffset = 778153 // need to be hardcoded on save
+    const footerByteOffset = 200 // need to be hardcoded on save
     fetch(location.pathname, { headers: { Range: `bytes=${footerByteOffset}-` } })
         .then(res => res.text())
         .then(index => console.log(index))
 }
+
+fetch(location.pathname, { headers: { Range: `bytes=778153-` } }).then(res => {
+    console.log("footer offset =",res.status, res.headers.get("content-range"))
+})
 </script>
 
 
@@ -410,10 +414,6 @@ Error message and password prompt
 </html>
 
 <!-- INDEX: {
- 
-{
   "$:/plugins/author/plugin-a": { "start": 104500, "end": 156000 },
   "$:/plugins/author/plugin-b": { "start": 156001, "end": 210000 }
-}
-
 } -->
