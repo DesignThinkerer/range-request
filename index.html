@@ -11,7 +11,7 @@ if (new URLSearchParams(location.search).has("library", true)) {
 }
 
 fetch(location.pathname, { headers: { Range: `bytes=778153-` } }).then(res => {
-    console.log("footer offset =",res.status, res.headers.get("content-range"))
+    console.table(res.status, res.headers.get("content-range"))
 })
 </script>
 
